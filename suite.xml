@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Demo test project" verbose="0">
+  <test thread-count="5" name="Demo" verbose="0">
+    <packages>
+      <package name="com.api.test.*">
+      </package> <!-- com.api.test.AccountCreationTest -->
+    </packages>
+  </test>
+</suite>
