@@ -4,10 +4,10 @@ import com.api.base.AuthService;
 import com.api.models.request.SignUpRequest;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.util.Random;
-
+@Listeners(com.api.listeners.TestListener.class)
 public class AccountCreationTest {
 
     @Test(description = "Verify if signup api is working...")
