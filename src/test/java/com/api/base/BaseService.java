@@ -3,7 +3,9 @@ package com.api.base;
 import static io.restassured.RestAssured.*;
 
 import com.api.filters.LoggingFilter;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -14,6 +16,7 @@ public class BaseService {
 
     static {
         RestAssured.filters(new LoggingFilter());
+        RestAssured.filters(new AllureRestAssured());
     }
 
     public BaseService() {
