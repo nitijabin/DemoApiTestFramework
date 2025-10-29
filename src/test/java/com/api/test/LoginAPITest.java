@@ -22,12 +22,7 @@ public class LoginAPITest {
         AuthService authService = new AuthService();
         LoginRequest loginRequest = new LoginRequest("uday123", "uday123");
         Response resp = authService.login(loginRequest);
-
         LoginResponse loginResponse = resp.as(LoginResponse.class);
-        System.out.println(resp.jsonPath().getString("email"));
-        System.out.println(loginResponse.toString());
-        //System.out.println(loginResponse.getId());
-        //System.out.println(loginResponse.getToken());
         Assert.assertEquals(loginResponse.getId(), 305);
     }
 }

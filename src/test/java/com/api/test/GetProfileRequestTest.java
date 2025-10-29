@@ -7,6 +7,7 @@ import com.api.models.response.UserProfileResponse;
 import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GetProfileRequestTest {
@@ -19,9 +20,8 @@ public class GetProfileRequestTest {
         String token = response.jsonPath().getString("token");
         UserProfileManagementService userProfileManagementService = new UserProfileManagementService();
         Response resp = userProfileManagementService.getProfile(token);
-        //System.out.println("Get Profile: " + resp.prettyPrint());
         UserProfileResponse userProfileResponse = resp.as(UserProfileResponse.class);
         logger.info("The log for the : "+ userProfileResponse.toString());
-        System.out.println(userProfileResponse.getFirstName());
+        Assert.assertEquals(userProfileResponse.getUsername(),"uday123");
     }
 }

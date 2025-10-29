@@ -6,19 +6,21 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 public class AccountCreationTest {
 
     @Test(description = "Verify if signup api is working...")
-    public void createAccountTest(){
+    public void createAccountTest() {
 
-       SignUpRequest signUpRequest = new SignUpRequest.Builder().userName("Aariz123")
-               .firstName("Ariz").lastName("Fais").email("Ariz123@yahoo.com")
-               .password("aariz123").mobileNumber("7777777776").build();
+        String username = "Aariz" + Math.random() * 100;
+        SignUpRequest signUpRequest = new SignUpRequest.Builder().userName(username)
+                .firstName("Ariz").lastName("Fais").email(username + "@yahoo.com")
+                .password("aariz123").mobileNumber("7777777776").build();
 
         AuthService authService = new AuthService();
         Response response = authService.signUp(signUpRequest);
-        Assert.assertEquals(response.jsonPath().getString("firstName"),"Ariz");
-        System.out.println(response.prettyPrint());
+        Assert.assertEquals(response.prettyPrint(), "User registered successfully!");
 
     }
 }

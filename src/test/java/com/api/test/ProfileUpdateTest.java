@@ -7,6 +7,7 @@ import com.api.models.request.ProfileRequest;
 import com.api.models.request.ProfileRequestDto;
 import com.api.models.response.UserProfileResponse;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ProfileUpdateTest {
@@ -26,8 +27,6 @@ public class ProfileUpdateTest {
         UserProfileManagementService userProfileManagementService = new UserProfileManagementService();
         Response resp = userProfileManagementService.updateProfile(token,  profileRequestDto.profileRequestDto());
         UserProfileResponse userProfileResponse = resp.as(UserProfileResponse.class);
-        System.out.println(resp.prettyPrint());
-        System.out.println(userProfileResponse.getFirstName());
-
+        Assert.assertEquals(userProfileResponse.getUsername(), "uday123");
     }
 }

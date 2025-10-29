@@ -2,6 +2,7 @@ package com.api.test;
 
 import com.api.base.AuthService;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ForgotPasswordTest {
@@ -10,6 +11,6 @@ public class ForgotPasswordTest {
     public void forgotPassword(){
         AuthService authService = new AuthService();
         Response response = authService.forgotPassword("sharma@gmail.com");
-        System.out.println(response.prettyPrint());
+        Assert.assertEquals(response.jsonPath().getString("message"), "If your email exists in our system, you will receive reset instructions.");
     }
 }
