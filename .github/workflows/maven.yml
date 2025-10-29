@@ -36,13 +36,20 @@ jobs:
         name: logs
         path: logs/
         
-    - name: Publish Test Report
-      if: always()
-      uses: dorny/test-reporter@v1
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@v1.8
       with:
-        name: TestNG Results
-        path: target/allure-results  
-        reporter: allure-testng
+        allure_results: target/allure-results
+        allure_report: target/allure-report
+        allure_history: allure-history
+
+    - name: Deploy Allure Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: success()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/allure-report
+
   
 
 
